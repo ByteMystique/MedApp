@@ -10,15 +10,25 @@ class CustomLoginPage extends StatelessWidget {
         children: [
           // Background image
           Positioned(
-            top: 120,
+            top: 0,
             left: 0,
             right: 0,
             child: Image.asset(
               'lib/assets/images/wp.jpeg',
-              height: MediaQuery.of(context).size.height * 0.4, 
-              fit: BoxFit.cover, 
+              height: MediaQuery.of(context).size.height * 0.4,
+              fit: BoxFit.cover,
             ),
-           ),
+          ),
+          // Background overlay for better contrast
+          Positioned(
+            top: 0,
+            left: 0,
+            right: 0,
+            child: Container(
+              height: MediaQuery.of(context).size.height * 0.4,
+              color: Colors.black.withOpacity(0.4), // Semi-transparent overlay
+            ),
+          ),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 20.0),
             child: Column(
@@ -29,14 +39,19 @@ class CustomLoginPage extends StatelessWidget {
                   decoration: InputDecoration(
                     prefixIcon: Icon(Icons.phone, color: Colors.blue),
                     labelText: 'Phone Number',
+                    labelStyle: TextStyle(color: Colors.blue), // Enhanced label color
+                    filled: true, // Filled background for better visibility
+                    fillColor: Colors.grey[200], // Light background color for input field
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(10),
+                      borderSide: BorderSide.none, // Remove border for modern look
                     ),
+                    contentPadding: EdgeInsets.symmetric(vertical: 15, horizontal: 10), // Add padding inside the TextField
                   ),
-                  keyboardType: TextInputType.phone, 
-                  maxLength: 10, 
+                  keyboardType: TextInputType.phone,
+                  maxLength: 10,
                   inputFormatters: [
-                    FilteringTextInputFormatter.digitsOnly, 
+                    FilteringTextInputFormatter.digitsOnly,
                   ],
                 ),
                 SizedBox(height: 20),
@@ -50,6 +65,7 @@ class CustomLoginPage extends StatelessWidget {
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(30),
                     ),
+                    elevation: 5, // Add shadow for a raised button effect
                   ),
                   child: Text(
                     'LOGIN',
